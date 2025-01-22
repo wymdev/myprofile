@@ -3,54 +3,24 @@ import styles from '../styles/ContactCode.module.css';
 const contactItems = [
   {
     social: 'website',
-    link: 'nitinranganath.me',
-    href: 'https://nitinranganath.me',
+    link: 'waiyanmaing.vercel',
+    href: 'https://waiyanmaing.vercel.app/',
   },
   {
     social: 'email',
-    link: 'nitinranganath@gmail.com',
-    href: 'mailto:nitinranganath@gmail.com',
+    link: 'waiyanmaing.dev@gmail.com',
+    href: 'mailto:waiyanmaing.dev@gmail.com',
   },
   {
     social: 'github',
-    link: 'itsnitinr',
-    href: 'https://github.com/itsnitinr',
+    link: 'wymdev',
+    href: 'https://github.com/wymdev',
   },
   {
     social: 'linkedin',
-    link: 'nitinranganath',
-    href: 'https://www.linkedin.com/in/nitinranganath/',
-  },
-  {
-    social: 'twitter',
-    link: 'iamnitinr',
-    href: 'https://www.twitter.com/iamnitinr',
-  },
-  {
-    social: 'instagram',
-    link: 'iamnitinr',
-    href: 'https://www.instagram.com/iamnitinr',
-  },
-  {
-    social: 'polywork',
-    link: 'nitinranganath',
-    href: 'https://www.polywork.com/nitinranganath',
-  },
-  {
-    social: 'telegram',
-    link: 'iamnitinr',
-    href: 'https://t.me/iamnitinr',
-  },
-  {
-    social: 'codepen',
-    link: 'nitinranganath',
-    href: 'https://codepen.io/itsnitinr',
-  },
-  {
-    social: 'codesandbox',
-    link: 'itsnitinr',
-    href: 'https://codesandbox.io/u/itsnitinr',
-  },
+    link: 'Wai Yan Maing',
+    href: 'https://www.linkedin.com/in/waiyanmaing-dev/',
+  }
 ];
 
 const ContactCode = () => {
