@@ -155,7 +155,6 @@ RESPONSE GUIDELINES:
 - Keep responses well-formatted with bullet points or numbered lists when appropriate
 - Be professional and concise`;
 }
-}
 
 export async function POST(request: NextRequest) {
   try {
