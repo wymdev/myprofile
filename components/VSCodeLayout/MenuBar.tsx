@@ -12,6 +12,25 @@ interface MenuBarProps {
   onThemeChange?: (theme: Theme) => void;
 }
 
+interface SubMenuItem {
+  label: string;
+  action: () => void;
+  active: boolean;
+}
+
+interface MenuItem {
+  label: string;
+  icon?: string;
+  action?: () => void;
+  shortcut?: string;
+  submenu?: SubMenuItem[];
+}
+
+interface MenuGroup {
+  label: string;
+  items: MenuItem[];
+}
+
 export default function MenuBar({ 
   onHelpClick, 
   onMenuClick, 
@@ -40,25 +59,25 @@ export default function MenuBar({
     setActiveMenu(null);
   };
 
-  const menuItems = [
+  const menuItems: MenuGroup[] = [
     {
       label: "File",
       items: [
-        { label: "Download CV/Resume", icon: "📄", action: () => window.open("https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing", "_blank") },
+        { label: "Download CV/Resume", icon: "↓", action: () => window.open("https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing", "_blank") },
         { label: "divider" },
-        { label: "View on GitHub", icon: "🔗", action: () => window.open("https://github.com/wymdev", "_blank") },
+        { label: "View on GitHub", icon: "→", action: () => window.open("https://github.com/wymdev", "_blank") },
       ],
     },
     {
       label: "Edit",
       items: [
-        { label: "Copy Email", icon: "📋", action: () => navigator.clipboard.writeText("waiyanmaing.dev@gmail.com") },
+        { label: "Copy Email", icon: "⎘", action: () => navigator.clipboard.writeText("waiyanmaing.dev@gmail.com") },
       ],
     },
     {
       label: "View",
       items: [
-        { label: "Theme", icon: "🎨", submenu: themes.map(t => ({ 
+        { label: "Theme", icon: "◐", submenu: themes.map(t => ({ 
           label: t.name, 
           action: () => handleThemeChange(t),
           active: currentTheme?.id === t.id
@@ -68,14 +87,14 @@ export default function MenuBar({
     {
       label: "Terminal",
       items: [
-        { label: "New Terminal", icon: "⌨️", shortcut: "Ctrl+`", action: onTerminalToggle },
+        { label: "New Terminal", icon: ">_", shortcut: "Ctrl+`", action: onTerminalToggle },
       ],
     },
     {
       label: "Help",
       items: [
-        { label: "Keyboard Shortcuts", icon: "⌨️", action: onHelpClick },
-        { label: "About", icon: "ℹ️", action: onHelpClick },
+        { label: "Keyboard Shortcuts", icon: "⌘", action: onHelpClick },
+        { label: "About", icon: "i", action: onHelpClick },
       ],
     },
   ];
