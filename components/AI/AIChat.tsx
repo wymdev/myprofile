@@ -121,14 +121,13 @@ export default function AIChat({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed z-50 overflow-hidden shadow-2xl
-              bottom-0 left-0 right-0 rounded-t-2xl
-              md:bottom-24 md:right-6 md:left-auto md:w-[400px] md:rounded-2xl"
+            className="fixed z-50 overflow-hidden shadow-2xl flex flex-col
+              bottom-0 left-0 right-0 rounded-t-2xl h-[70vh]
+              md:bottom-24 md:right-6 md:left-auto md:w-[400px] md:rounded-2xl md:h-auto md:max-h-[80vh]"
             style={{ 
               background: "var(--sidebar-bg)",
               border: "1px solid var(--border-color)",
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-              maxHeight: "85vh",
             }}
           >
             {/* Header */}
@@ -161,7 +160,7 @@ export default function AIChat({
 
             {/* Messages */}
             <div 
-              className="h-[300px] md:h-[350px] overflow-y-auto p-4 space-y-3"
+              className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0"
               style={{ background: "var(--editor-bg)" }}
             >
               {messages.map((msg) => (

@@ -127,33 +127,34 @@ CAREER SUMMARY
 
 // System prompt for OpenAI
 function getSystemPrompt() {
-  return `You are Wai Yan Maing's friendly and helpful AI assistant on his portfolio website. You have complete knowledge of his CV/Resume data below. 
+  return `You are Wai Yan Maing's AI assistant on his portfolio website. You MUST ONLY answer questions using the CV/Resume data provided below. Do NOT use any external knowledge.
 
-YOUR PERSONALITY:
-- Be warm, friendly, and professional
-- Be helpful and provide detailed answers
-- Understand different ways users might ask questions (e.g., "old histories" = "previous work experience", "detail" = "more information")
-- Never say "I don't have that information" if the answer IS in the CV data
-- Always be polite and encouraging
+STRICT RULES:
+1. ONLY answer based on the CV DATA below - do not make up or assume any information
+2. If information is not in the CV data, say "That information is not in Wai Yan's CV. Please contact him directly at waiyanmaing.dev@gmail.com"
+3. Keep responses concise and professional
 
-IMPORTANT RULES:
-1. ALWAYS provide detailed, helpful answers from the CV data
-2. Understand context - if user asks for "detail" or "more info", provide more details about the last topic discussed
-3. If user asks about "old work", "previous jobs", "history", "past experience" - give ALL work experience details
-4. For resume/CV download questions, ALWAYS provide this link: https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing
-5. Be conversational and friendly, not robotic
-6. If truly unknown (not in CV), politely say you can help with CV-related questions and suggest contacting Wai Yan directly
+GREETING HANDLING:
+- For ANY greeting (hi, hello, hey, good morning, good afternoon, good evening, what's up, yo, howdy, greetings, etc.), respond warmly and ask what they'd like to know about Wai Yan
+- Example greetings response: "Hello! Welcome to Wai Yan Maing's portfolio. I can help you learn about his work experience, technical skills, education, or contact information. What would you like to know?"
 
-CV DATA:
+UNDERSTANDING USER INTENT:
+- "experience", "work", "job", "history", "career", "previous", "old work" = Show ALL work experience
+- "skills", "tech", "stack", "technologies" = Show technical skills
+- "contact", "email", "phone", "reach" = Show contact information
+- "resume", "cv", "download" = Provide resume download link: https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing
+- "education", "degree", "study" = Show education
+- "current", "now", "doing" = Show current job at Thai Beverage
+- "detail", "more" = Provide more details on the last discussed topic
+
+CV DATA (ONLY SOURCE OF TRUTH):
 ${CV_DATA}
 
-RESPONSE GUIDELINES:
-- For experience questions: List ALL jobs with details
-- For skills questions: Categorize and list all skills
-- For contact: Provide phone, email, website, and resume link
-- For education: List all degrees and certificates
-- Keep responses well-formatted with bullet points or numbered lists when appropriate
-- Be professional and concise`;
+RESPONSE FORMAT:
+- Use **bold** for headings and important info
+- Use bullet points (•) for lists
+- Keep responses structured and easy to read
+- Be helpful but concise`;
 }
 
 export async function POST(request: NextRequest) {
@@ -214,15 +215,19 @@ export async function POST(request: NextRequest) {
 function generateFallbackResponse(input: string): string {
   const lower = input.toLowerCase();
 
-  // Greetings
-  if (lower.match(/^(hi|hello|hey|good|greetings)/)) {
-    return `Hello! Welcome! I'm Wai Yan Maing's AI assistant. I'd be happy to tell you about his:
+  // Greetings - catch various greeting patterns
+  if (lower.match(/^(hi|hello|hey|good|greetings|yo|howdy|what'?s up|sup|morning|afternoon|evening)/i) || 
+      lower.length < 5 || 
+      lower === "hi" || 
+      lower === "hello") {
+    return `Hello! Welcome to Wai Yan Maing's portfolio.
 
-• Work Experience (7+ years)
-• Technical Skills
-• Education
-• Contact Information
-• Download Resume
+I can help you learn about:
+• **Work Experience** - 7+ years across 4 companies
+• **Technical Skills** - Full Stack, AI, DevOps
+• **Education** - B.C.Sc. and certifications
+• **Contact Info** - Email, phone, website
+• **Resume** - Download PDF
 
 What would you like to know?`;
   }

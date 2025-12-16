@@ -72,7 +72,7 @@ export default function ContactSection() {
       className="h-full overflow-auto"
       style={{ background: "var(--editor-bg)" }}
     >
-      <div className="min-h-full px-12 py-12 max-w-5xl mx-auto">
+      <div className="min-h-full px-4 md:px-12 py-6 md:py-12 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,20 +80,19 @@ export default function ContactSection() {
         >
           {/* Header */}
           <h2 
-            className="text-3xl font-semibold mb-2"
+            className="text-2xl md:text-3xl font-semibold mb-2"
             style={{ color: "var(--text-primary)" }}
           >
             Get In Touch
           </h2>
           <p 
-            className="text-[14px] mb-8 max-w-xl"
+            className="text-[13px] md:text-[14px] mb-6 md:mb-8 max-w-xl"
             style={{ color: "var(--text-muted)" }}
           >
             Have a project in mind or want to collaborate? I&apos;d love to hear from you!
-            Reach out through any of the channels below.
           </p>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-8">
             {/* Quick Actions */}
             <div className="space-y-4">
               {/* Primary CTA - Email */}

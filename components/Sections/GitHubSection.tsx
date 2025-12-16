@@ -61,17 +61,17 @@ export default function GitHubSection() {
       className="h-full overflow-auto"
       style={{ background: "var(--editor-bg)" }}
     >
-      <div className="min-h-full px-12 py-12 max-w-5xl mx-auto">
+      <div className="min-h-full px-4 md:px-12 py-6 md:py-12 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
           {/* Header */}
-          <div className="flex justify-between items-start mb-8">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6 md:mb-8">
             <div>
               <h2 
-                className="text-3xl font-semibold mb-2"
+                className="text-2xl md:text-3xl font-semibold mb-2"
                 style={{ color: "var(--text-primary)" }}
               >
                 GitHub Profile
@@ -87,9 +87,17 @@ export default function GitHubSection() {
               href="https://github.com/wymdev"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary text-[12px]"
+              className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[12px] transition-colors"
+              style={{ 
+                background: "var(--list-active)", 
+                color: "var(--text-secondary)",
+                border: "1px solid var(--border-subtle)"
+              }}
             >
-              View on GitHub →
+              View on GitHub
+              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
             </a>
           </div>
 
@@ -99,7 +107,7 @@ export default function GitHubSection() {
               style={{ background: "var(--sidebar-bg)" }}
             />
           ) : (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Profile Card */}
               <div 
                 className="p-6 rounded"
