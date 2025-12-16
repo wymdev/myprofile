@@ -366,11 +366,24 @@ body {
   .font-code {
     font-size: 12px;
   }
+  
+  /* Fix mobile viewport height issues */
+  :root {
+    height: 100%;
+  }
+  
+  /* Prevent overscroll on iOS */
+  body.modal-open {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Safe area padding for notched devices */
 @supports (padding-top: env(safe-area-inset-top)) {
-  body {
+body {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);

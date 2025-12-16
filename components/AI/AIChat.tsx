@@ -30,6 +30,16 @@ export default function AIChat({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Prevent body scroll on mobile when chat is open
+  useEffect(() => {
+    if (isOpen && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isOpen]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -121,18 +131,19 @@ export default function AIChat({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed z-50 overflow-hidden shadow-2xl flex flex-col
-              bottom-0 left-0 right-0 rounded-t-2xl h-[70vh]
-              md:bottom-24 md:right-6 md:left-auto md:w-[400px] md:rounded-2xl md:h-auto md:max-h-[80vh]"
+            className="fixed z-50 shadow-2xl flex flex-col
+              bottom-0 left-0 right-0 top-[15vh] rounded-t-2xl
+              md:bottom-24 md:right-6 md:left-auto md:top-auto md:w-[400px] md:h-auto md:max-h-[600px] md:rounded-2xl"
             style={{ 
               background: "var(--sidebar-bg)",
               border: "1px solid var(--border-color)",
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+              maxHeight: "85vh",
             }}
           >
             {/* Header */}
             <div 
-              className="flex items-center justify-between px-4 py-3"
+              className="flex items-center justify-between px-4 py-3 flex-shrink-0"
               style={{ 
                 background: "linear-gradient(135deg, var(--accent), var(--syntax-type))",
               }}
@@ -216,8 +227,8 @@ export default function AIChat({
             {/* Quick Actions */}
             {messages.length < 3 && (
               <div 
-                className="px-4 py-2 flex gap-2 flex-wrap"
-                style={{ borderTop: "1px solid var(--border-subtle)" }}
+                className="px-4 py-2 flex gap-2 flex-wrap flex-shrink-0"
+                style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--sidebar-bg)" }}
               >
                 {quickActions.map((action) => (
                   <button
@@ -242,7 +253,7 @@ export default function AIChat({
             {/* Input */}
             <form 
               onSubmit={handleSubmit}
-              className="flex items-center gap-2 p-3"
+              className="flex items-center gap-2 p-3 flex-shrink-0"
               style={{ 
                 borderTop: "1px solid var(--border-subtle)",
                 background: "var(--sidebar-bg)",

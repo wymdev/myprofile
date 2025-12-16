@@ -10,7 +10,7 @@ export const portfolioConfig = {
     phone: "0652940833",
     location: "Bangkok, Thailand",
     address: "37 Lasalle 19th Alley, Bang Na Tai, Bangkok City",
-    website: "https://waiyanmaing.me",
+    website: "https://waiyanmaing.vercel.app",
     
     // Social Links
     github: "https://github.com/wymdev",
