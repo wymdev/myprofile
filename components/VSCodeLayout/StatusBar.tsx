@@ -12,9 +12,9 @@ interface StatusBarProps {
   isTerminalOpen: boolean;
 }
 
-export default function StatusBar({ 
-  activeFile, 
-  currentTheme, 
+export default function StatusBar({
+  activeFile,
+  currentTheme,
   onThemeChange,
   onTerminalToggle,
   isTerminalOpen
@@ -35,9 +35,9 @@ export default function StatusBar({
   };
 
   return (
-    <div 
+    <div
       className="flex items-center justify-between h-[28px] md:h-[22px] px-2 text-[11px] md:text-[12px] select-none"
-      style={{ 
+      style={{
         background: "var(--statusbar-bg)",
         color: "var(--statusbar-fg)"
       }}
@@ -78,14 +78,13 @@ export default function StatusBar({
       {/* Right side */}
       <div className="flex items-center h-full">
         {/* Terminal Toggle */}
-        <button 
+        <button
           onClick={onTerminalToggle}
           className="flex items-center gap-1 md:gap-1.5 px-2 hover:bg-white/10 h-full"
           title="Toggle Terminal (Ctrl+`)"
         >
           <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="currentColor">
-            <path d="M6 9l-4-4 .7-.7L6 7.6 9.3 4.3l.7.7-4 4z" />
-            <path d="M14 2H2v12h12V2zM3 13V3h10v10H3z" />
+            <path d="M2 3h12v10H2V3zm1 1v8h10V4H3zm1.5 1.5l3 2.5-3 2.5v-5zM9 9h3v1H9V9z" />
           </svg>
           <span className="hidden sm:inline">Terminal</span>
           {isTerminalOpen && (
@@ -97,26 +96,26 @@ export default function StatusBar({
         <button className="hidden md:block px-2 hover:bg-white/10 h-full">
           Ln 1, Col 1
         </button>
-        
+
         {/* Spaces - Desktop only */}
         <button className="hidden md:block px-2 hover:bg-white/10 h-full">
           Spaces: 2
         </button>
-        
+
         {/* Encoding - Desktop only */}
         <button className="hidden lg:block px-2 hover:bg-white/10 h-full">
           UTF-8
         </button>
-        
+
         {/* Language */}
         <button className="hidden sm:block px-2 hover:bg-white/10 h-full">
           {getLanguage(activeFile)}
         </button>
-        
+
         {/* Theme Picker */}
-        <ThemePicker 
-          currentTheme={currentTheme} 
-          onThemeChange={onThemeChange} 
+        <ThemePicker
+          currentTheme={currentTheme}
+          onThemeChange={onThemeChange}
         />
 
         {/* Bell - Desktop only */}

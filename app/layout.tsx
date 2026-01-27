@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: "Wai Yan Maing | Full Stack Developer",
   description: "Full Stack Developer Portfolio - Building Web & Mobile Applications",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
   },
 };
 

@@ -57,7 +57,7 @@ export default function GitHubSection() {
   const totalLangCount = topLanguages.reduce((acc, [, count]) => acc + count, 0);
 
   return (
-    <div 
+    <div
       className="h-full overflow-auto"
       style={{ background: "var(--editor-bg)" }}
     >
@@ -70,13 +70,13 @@ export default function GitHubSection() {
           {/* Header */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6 md:mb-8">
             <div>
-              <h2 
+              <h2
                 className="text-2xl md:text-3xl font-semibold mb-2"
                 style={{ color: "var(--text-primary)" }}
               >
                 GitHub Profile
               </h2>
-              <p 
+              <p
                 className="text-[13px]"
                 style={{ color: "var(--text-muted)" }}
               >
@@ -88,30 +88,30 @@ export default function GitHubSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[12px] transition-colors"
-              style={{ 
-                background: "var(--list-active)", 
+              style={{
+                background: "var(--list-active)",
                 color: "var(--text-secondary)",
                 border: "1px solid var(--border-subtle)"
               }}
             >
               View on GitHub
               <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
               </svg>
             </a>
           </div>
 
           {loading ? (
-            <div 
+            <div
               className="h-40 rounded animate-pulse"
               style={{ background: "var(--sidebar-bg)" }}
             />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {/* Profile Card */}
-              <div 
+              <div
                 className="p-6 rounded"
-                style={{ 
+                style={{
                   background: "var(--sidebar-bg)",
                   border: "1px solid var(--border-subtle)"
                 }}
@@ -123,21 +123,21 @@ export default function GitHubSection() {
                     className="w-20 h-20 rounded-full mb-4"
                   />
                 )}
-                <h3 
+                <h3
                   className="text-lg font-medium"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {user?.name || "Wai Yan Maing"}
                 </h3>
-                <p 
+                <p
                   className="text-[13px] mb-4"
                   style={{ color: "var(--accent)" }}
                 >
                   @{user?.login || "wymdev"}
                 </p>
-                
+
                 {user?.bio && (
-                  <p 
+                  <p
                     className="text-[13px] mb-4"
                     style={{ color: "var(--text-secondary)" }}
                   >
@@ -147,13 +147,13 @@ export default function GitHubSection() {
 
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div>
-                    <p 
+                    <p
                       className="text-lg font-semibold"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {user?.public_repos || repos.length}
                     </p>
-                    <p 
+                    <p
                       className="text-[10px]"
                       style={{ color: "var(--text-muted)" }}
                     >
@@ -161,13 +161,13 @@ export default function GitHubSection() {
                     </p>
                   </div>
                   <div>
-                    <p 
+                    <p
                       className="text-lg font-semibold"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {user?.followers || 0}
                     </p>
-                    <p 
+                    <p
                       className="text-[10px]"
                       style={{ color: "var(--text-muted)" }}
                     >
@@ -175,13 +175,13 @@ export default function GitHubSection() {
                     </p>
                   </div>
                   <div>
-                    <p 
+                    <p
                       className="text-lg font-semibold"
                       style={{ color: "var(--text-primary)" }}
                     >
                       {user?.following || 0}
                     </p>
-                    <p 
+                    <p
                       className="text-[10px]"
                       style={{ color: "var(--text-muted)" }}
                     >
@@ -194,14 +194,14 @@ export default function GitHubSection() {
               {/* Stats & Activity */}
               <div className="md:col-span-2 space-y-6">
                 {/* Contribution Graph */}
-                <div 
+                <div
                   className="p-4 rounded"
-                  style={{ 
+                  style={{
                     background: "var(--sidebar-bg)",
                     border: "1px solid var(--border-subtle)"
                   }}
                 >
-                  <p 
+                  <p
                     className="text-[11px] uppercase tracking-wider mb-3"
                     style={{ color: "var(--text-muted)" }}
                   >
@@ -237,14 +237,14 @@ export default function GitHubSection() {
                 </div>
 
                 {/* Language Stats */}
-                <div 
+                <div
                   className="p-4 rounded"
-                  style={{ 
+                  style={{
                     background: "var(--sidebar-bg)",
                     border: "1px solid var(--border-subtle)"
                   }}
                 >
-                  <p 
+                  <p
                     className="text-[11px] uppercase tracking-wider mb-3"
                     style={{ color: "var(--text-muted)" }}
                   >
@@ -280,14 +280,14 @@ export default function GitHubSection() {
                 </div>
 
                 {/* Top Repos */}
-                <div 
+                <div
                   className="p-4 rounded"
-                  style={{ 
+                  style={{
                     background: "var(--sidebar-bg)",
                     border: "1px solid var(--border-subtle)"
                   }}
                 >
-                  <p 
+                  <p
                     className="text-[11px] uppercase tracking-wider mb-3"
                     style={{ color: "var(--text-muted)" }}
                   >
@@ -304,12 +304,10 @@ export default function GitHubSection() {
                         style={{ background: "var(--editor-bg)" }}
                       >
                         <div className="flex items-center gap-2">
-                          {repo.language && (
-                            <span
-                              className="w-2.5 h-2.5 rounded-full"
-                              style={{ background: languageColors[repo.language] || "#888" }}
-                            />
-                          )}
+                          <span
+                            className="w-2.5 h-2.5 rounded-full"
+                            style={{ background: repo.language ? (languageColors[repo.language] || "#888") : "#666" }}
+                          />
                           <span className="text-[13px]" style={{ color: "var(--accent)" }}>
                             {repo.name}
                           </span>

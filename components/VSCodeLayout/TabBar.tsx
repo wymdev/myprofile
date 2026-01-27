@@ -16,6 +16,7 @@ const tabs: Tab[] = [
   { id: "contact", name: "contact.css" },
   { id: "games", name: "games.py" },
   { id: "github", name: "README.md" },
+  { id: "blog", name: "blog.mdx" },
 ];
 
 interface TabBarProps {
@@ -25,9 +26,9 @@ interface TabBarProps {
 
 export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
   return (
-    <div 
+    <div
       className="flex items-center h-[35px] overflow-x-auto"
-      style={{ 
+      style={{
         background: "var(--tab-inactive-bg)",
         borderBottom: "1px solid var(--border-subtle)"
       }}
@@ -46,22 +47,22 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
           >
             {/* Active tab top border */}
             {isActive && (
-              <div 
+              <div
                 className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "var(--accent)" }}
               />
             )}
-            
+
             {/* File icon */}
             <span className="mr-2">{getFileIcon(tab.name)}</span>
-            
+
             {/* File name */}
             <span style={{ color: isActive ? "var(--text-primary)" : "var(--text-secondary)" }}>
               {tab.name}
             </span>
-            
+
             {/* Close button */}
-            <span 
+            <span
               className="ml-2 opacity-0 group-hover:opacity-100 hover:bg-[var(--list-hover)] rounded p-0.5"
               style={{ color: "var(--text-muted)" }}
               onClick={(e) => {
@@ -74,7 +75,7 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
 
             {/* Modified dot */}
             {isActive && (
-              <span 
+              <span
                 className="absolute top-1/2 right-1 -translate-y-1/2 w-2 h-2 rounded-full opacity-0"
                 style={{ background: "var(--text-muted)" }}
               />
@@ -82,16 +83,16 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
           </button>
         );
       })}
-      
+
       {/* Tab bar actions */}
       <div className="flex items-center ml-auto px-2 gap-1">
-        <button 
+        <button
           className="p-1 rounded hover:bg-[var(--list-hover)]"
           style={{ color: "var(--text-muted)" }}
         >
           {Icons.splitHorizontal}
         </button>
-        <button 
+        <button
           className="p-1 rounded hover:bg-[var(--list-hover)]"
           style={{ color: "var(--text-muted)" }}
         >

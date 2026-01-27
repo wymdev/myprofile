@@ -24,6 +24,7 @@ const fileTree: FileItem[] = [
       { name: "contact.css", type: "file", section: "contact" },
       { name: "games.py", type: "file", section: "games" },
       { name: "README.md", type: "file", section: "github" },
+      { name: "blog.mdx", type: "file", section: "blog" },
     ],
   },
 ];
@@ -55,9 +56,9 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
               className="w-full flex items-center h-[22px] hover:bg-[var(--list-hover)] group"
               style={{ paddingLeft: `${depth * 8 + 8}px` }}
             >
-              <span 
+              <span
                 className="mr-1 transition-transform"
-                style={{ 
+                style={{
                   transform: expandedFolders.includes(item.name) ? "rotate(90deg)" : "rotate(0deg)",
                   color: "var(--text-muted)"
                 }}
@@ -79,7 +80,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
           <button
             onClick={() => onSectionChange(item.section)}
             className="w-full flex items-center h-[22px] transition-colors"
-            style={{ 
+            style={{
               paddingLeft: `${depth * 8 + 24}px`,
               background: activeSection === item.section ? "var(--list-active)" : "transparent",
             }}
@@ -116,7 +117,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
       {/* Activity Bar */}
       <div
         className="w-12 flex flex-col items-center py-1"
-        style={{ 
+        style={{
           background: "var(--activitybar-bg)",
           borderRight: "1px solid var(--border-subtle)"
         }}
@@ -132,7 +133,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
             title={item.label}
           >
             {activeIcon === item.id && (
-              <div 
+              <div
                 className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6"
                 style={{ background: "var(--text-primary)" }}
               />
@@ -140,9 +141,9 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
             {item.icon}
           </button>
         ))}
-        
+
         <div className="flex-1" />
-        
+
         <button
           className="w-12 h-12 flex items-center justify-center"
           style={{ color: "var(--text-muted)" }}
@@ -162,13 +163,13 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
       {/* Explorer Panel */}
       <div
         className="w-60 flex flex-col"
-        style={{ 
+        style={{
           background: "var(--sidebar-bg)",
           borderRight: "1px solid var(--border-subtle)"
         }}
       >
         {/* Header */}
-        <div 
+        <div
           className="h-[35px] flex items-center justify-between px-4 text-[11px] uppercase tracking-wider"
           style={{ color: "var(--text-secondary)" }}
         >
@@ -185,7 +186,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
               className="w-full flex items-center h-[22px] px-2 text-[11px] uppercase tracking-wider font-semibold"
               style={{ color: "var(--text-secondary)" }}
             >
-              <span 
+              <span
                 className="mr-1"
                 style={{ color: "var(--text-muted)" }}
               >

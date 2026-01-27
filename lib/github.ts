@@ -2,6 +2,14 @@
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN || "";
 const GITHUB_USERNAME = "wymdev";
 
+// Whitelist of repos to display
+const ALLOWED_REPOS = [
+  "go-mobile-backend",
+  "aivision_studio",
+  "filesharebot",
+  "beebudget",
+];
+
 export interface GitHubRepo {
   id: number;
   name: string;
@@ -60,9 +68,10 @@ export async function getGitHubRepos(): Promise<GitHubRepo[]> {
     );
     if (!res.ok) return [];
     const repos: GitHubRepo[] = await res.json();
-    // Filter out forks and sort by stars
+    // Filter: only whitelisted repos (case-insensitive), sort by stars
+    const allowedLower = ALLOWED_REPOS.map(r => r.toLowerCase());
     return repos
-      .filter((r) => !r.fork)
+      .filter((r) => allowedLower.includes(r.name.toLowerCase()))
       .sort((a, b) => b.stargazers_count - a.stargazers_count);
   } catch {
     return [];

@@ -17,6 +17,7 @@ import {
   ContactSection,
   GamesSection,
   GitHubSection,
+  BlogSection,
 } from "@/components/Sections";
 import { Terminal } from "@/components/Terminal";
 import { AIChat, AIButton } from "@/components/AI";
@@ -31,6 +32,7 @@ const fileMap: Record<string, string> = {
   contact: "contact.css",
   games: "games.py",
   github: "README.md",
+  blog: "blog.mdx",
 };
 
 const sectionComponents: Record<string, React.ComponentType> = {
@@ -41,55 +43,61 @@ const sectionComponents: Record<string, React.ComponentType> = {
   contact: ContactSection,
   games: GamesSection,
   github: GitHubSection,
+  blog: BlogSection,
 };
 
 // SVG Icons for Mobile Nav
 const NavIcons = {
   home: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
     </svg>
   ),
   about: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
     </svg>
   ),
   projects: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+      <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" />
     </svg>
   ),
   skills: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+      <path d="M7 2v11h3v9l7-12h-4l4-8z" />
     </svg>
   ),
   contact: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
     </svg>
   ),
   games: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+      <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
     </svg>
   ),
   github: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+    </svg>
+  ),
+  blog: (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
     </svg>
   ),
 };
 
 // Mobile Navigation Menu
-function MobileNav({ 
-  isOpen, 
-  onClose, 
-  activeSection, 
-  onSectionChange 
-}: { 
-  isOpen: boolean; 
+function MobileNav({
+  isOpen,
+  onClose,
+  activeSection,
+  onSectionChange
+}: {
+  isOpen: boolean;
   onClose: () => void;
   activeSection: string;
   onSectionChange: (section: string) => void;
@@ -102,6 +110,7 @@ function MobileNav({
     { id: "contact", label: "Contact" },
     { id: "games", label: "Games" },
     { id: "github", label: "GitHub" },
+    { id: "blog", label: "Blog" },
   ];
 
   return (
@@ -121,22 +130,22 @@ function MobileNav({
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed left-0 top-0 bottom-0 w-72 z-50 md:hidden"
-            style={{ 
+            style={{
               background: "var(--sidebar-bg)",
               borderRight: "1px solid var(--border-color)",
             }}
           >
             {/* Header */}
-            <div 
+            <div
               className="flex items-center justify-between p-4"
               style={{ borderBottom: "1px solid var(--border-subtle)" }}
             >
               <div className="flex items-center gap-3">
-                <div 
+                <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold text-white"
                   style={{ background: "linear-gradient(135deg, var(--accent), var(--syntax-type))" }}
                 >
-                  WY
+                  Dev
                 </div>
                 <div>
                   <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
@@ -144,15 +153,15 @@ function MobileNav({
                   </p>
                   <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                     {portfolioConfig.personal.title}
-          </p>
-        </div>
+                  </p>
+                </div>
               </div>
               <button
                 onClick={onClose}
                 className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors"
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" style={{ color: "var(--text-secondary)" }}>
-                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                 </svg>
               </button>
             </div>
@@ -177,7 +186,7 @@ function MobileNav({
                   </span>
                   <span className="text-sm font-medium">{section.label}</span>
                   {activeSection === section.id && (
-                    <span 
+                    <span
                       className="ml-auto w-1.5 h-1.5 rounded-full"
                       style={{ background: "var(--accent)" }}
                     />
@@ -187,19 +196,19 @@ function MobileNav({
             </div>
 
             {/* Footer */}
-            <div 
+            <div
               className="absolute bottom-0 left-0 right-0 p-4"
               style={{ borderTop: "1px solid var(--border-subtle)" }}
             >
               <a
                 href={portfolioConfig.personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs"
                 style={{ color: "var(--text-muted)" }}
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
                 View on GitHub
               </a>
@@ -224,13 +233,13 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       "Starting dev server",
       "Almost ready",
     ];
-    
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         const next = prev + Math.random() * 15;
         const textIndex = Math.min(Math.floor(next / 25), texts.length - 1);
         setLoadingText(texts[textIndex]);
-        
+
         if (next >= 100) {
           clearInterval(interval);
           setTimeout(onComplete, 300);
@@ -252,7 +261,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     >
       {/* Animated background */}
       <div className="absolute inset-0">
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
             background: `
@@ -273,14 +282,14 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="mb-8"
         >
-          <div 
+          <div
             className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center text-3xl font-bold text-white"
             style={{
               background: "linear-gradient(135deg, #0078d4, #4ec9b0)",
               boxShadow: "0 0 60px rgba(0, 120, 212, 0.5)",
             }}
           >
-            WY
+            Dev
           </div>
         </motion.div>
 
@@ -312,7 +321,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           <div className="h-1 bg-gray-800 rounded-full overflow-hidden mb-2">
             <motion.div
               className="h-full rounded-full"
-              style={{ 
+              style={{
                 width: `${progress}%`,
                 background: "linear-gradient(90deg, #0078d4, #4ec9b0)",
               }}
@@ -338,7 +347,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 // Help Dialog Component
 function HelpDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   if (!isOpen) return null;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -368,7 +377,7 @@ function HelpDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" style={{ color: "var(--text-secondary)" }}>
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
             </svg>
           </button>
         </div>
@@ -416,7 +425,7 @@ function HelpDialog({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         <button
           onClick={onClose}
           className="w-full mt-6 py-2.5 rounded-lg text-sm font-medium transition-all active:scale-95"
-          style={{ 
+          style={{
             background: "var(--accent)",
             color: "var(--accent-fg)",
           }}
@@ -483,8 +492,8 @@ export default function Home() {
         style={{ background: "var(--editor-bg)" }}
       >
         {/* Menu Bar */}
-        <MenuBar 
-          onHelpClick={() => setShowHelp(true)} 
+        <MenuBar
+          onHelpClick={() => setShowHelp(true)}
           onMenuClick={() => setIsMobileNavOpen(true)}
           onTerminalToggle={() => setIsTerminalOpen(!isTerminalOpen)}
           currentTheme={currentTheme}
@@ -536,17 +545,17 @@ export default function Home() {
             </div>
 
             {/* Terminal */}
-            <Terminal 
+            <Terminal
               isOpen={isTerminalOpen}
               onClose={() => setIsTerminalOpen(false)}
               onMinimize={() => setIsTerminalOpen(false)}
             />
           </div>
-    </div>
+        </div>
 
         {/* Status Bar */}
-        <StatusBar 
-          activeFile={fileMap[activeSection] || "home.tsx"} 
+        <StatusBar
+          activeFile={fileMap[activeSection] || "home.tsx"}
           currentTheme={currentTheme}
           onThemeChange={setCurrentTheme}
           onTerminalToggle={() => setIsTerminalOpen(!isTerminalOpen)}
@@ -554,15 +563,15 @@ export default function Home() {
         />
 
         {/* AI Chat Button */}
-        <AIButton 
+        <AIButton
           onClick={() => setIsAIChatOpen(!isAIChatOpen)}
           isOpen={isAIChatOpen}
         />
 
         {/* AI Chat */}
-        <AIChat 
-          isOpen={isAIChatOpen} 
-          onClose={() => setIsAIChatOpen(false)} 
+        <AIChat
+          isOpen={isAIChatOpen}
+          onClose={() => setIsAIChatOpen(false)}
         />
 
         {/* Help Dialog */}

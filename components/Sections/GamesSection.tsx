@@ -11,7 +11,7 @@ function SnakeGame() {
   const [gameOver, setGameOver] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [canvasSize, setCanvasSize] = useState(320);
-  
+
   const gridSize = 16;
   const cellSize = canvasSize / gridSize;
 
@@ -74,7 +74,7 @@ function SnakeGame() {
     const gameLoop = setInterval(() => {
       const state = gameStateRef.current;
       const currentCellSize = canvasSize / gridSize;
-      
+
       if (state.nextDirection.x !== 0 || state.nextDirection.y !== 0) {
         state.direction = { ...state.nextDirection };
       }
@@ -85,14 +85,14 @@ function SnakeGame() {
         state.snake.forEach((s) => ctx.fillRect(s.x * currentCellSize + 1, s.y * currentCellSize + 1, currentCellSize - 2, currentCellSize - 2));
         ctx.fillStyle = "#f14c4c";
         ctx.beginPath();
-        ctx.arc(state.food.x * currentCellSize + currentCellSize/2, state.food.y * currentCellSize + currentCellSize/2, currentCellSize/2 - 2, 0, Math.PI * 2);
+        ctx.arc(state.food.x * currentCellSize + currentCellSize / 2, state.food.y * currentCellSize + currentCellSize / 2, currentCellSize / 2 - 2, 0, Math.PI * 2);
         ctx.fill();
         return;
       }
 
       const head = { x: state.snake[0].x + state.direction.x, y: state.snake[0].y + state.direction.y };
       if (head.x < 0 || head.x >= gridSize || head.y < 0 || head.y >= gridSize ||
-          state.snake.some((s) => s.x === head.x && s.y === head.y)) {
+        state.snake.some((s) => s.x === head.x && s.y === head.y)) {
         setGameOver(true);
         setIsPlaying(false);
         setHighScore(prev => Math.max(prev, score));
@@ -114,9 +114,9 @@ function SnakeGame() {
       });
       ctx.fillStyle = "#f14c4c";
       ctx.beginPath();
-      ctx.arc(state.food.x * currentCellSize + currentCellSize/2, state.food.y * currentCellSize + currentCellSize/2, currentCellSize/2 - 2, 0, Math.PI * 2);
+      ctx.arc(state.food.x * currentCellSize + currentCellSize / 2, state.food.y * currentCellSize + currentCellSize / 2, currentCellSize / 2 - 2, 0, Math.PI * 2);
       ctx.fill();
-    }, 120);
+    }, 180);
 
     return () => clearInterval(gameLoop);
   }, [isPlaying, gameOver, score, canvasSize]);
@@ -175,7 +175,7 @@ function SudokuGame() {
     const shuffled = [...solution];
     const puzzle: (number | null)[][] = shuffled.map(row => [...row]);
     const orig: boolean[][] = shuffled.map(() => [false, false, false, false]);
-    
+
     // Remove some numbers (keep ~8 out of 16)
     let removed = 0;
     while (removed < 8) {
@@ -186,14 +186,14 @@ function SudokuGame() {
         removed++;
       }
     }
-    
+
     // Mark original cells
     for (let r = 0; r < 4; r++) {
       for (let c = 0; c < 4; c++) {
         orig[r][c] = puzzle[r][c] !== null;
       }
     }
-    
+
     setBoard(puzzle);
     setOriginal(orig);
     setIsComplete(false);
@@ -213,7 +213,7 @@ function SudokuGame() {
       const newBoard = board.map(row => [...row]);
       newBoard[selected.row][selected.col] = num === 0 ? null : num;
       setBoard(newBoard);
-      
+
       // Check if complete
       const complete = newBoard.every(row => row.every(cell => cell !== null));
       if (complete) {
@@ -251,26 +251,25 @@ function SudokuGame() {
       <div className="mb-4 text-center">
         <p className="text-[12px]" style={{ color: "var(--text-muted)" }}>Fill in numbers 1-4 (no repeats in rows, columns, or 2x2 boxes)</p>
       </div>
-      
+
       {/* Board */}
       <div className="grid grid-cols-4 gap-0.5 p-1 rounded-xl" style={{ background: "var(--border-color)" }}>
         {board.map((row, rIdx) => row.map((cell, cIdx) => (
           <button
             key={`${rIdx}-${cIdx}`}
             onClick={() => handleCellClick(rIdx, cIdx)}
-            className={`w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-xl font-bold transition-all ${
-              (rIdx < 2 && cIdx < 2) || (rIdx >= 2 && cIdx >= 2) ? "bg-opacity-50" : ""
-            }`}
+            className={`w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-xl font-bold transition-all ${(rIdx < 2 && cIdx < 2) || (rIdx >= 2 && cIdx >= 2) ? "bg-opacity-50" : ""
+              }`}
             style={{
-              background: selected?.row === rIdx && selected?.col === cIdx 
-                ? "var(--accent)" 
+              background: selected?.row === rIdx && selected?.col === cIdx
+                ? "var(--accent)"
                 : (rIdx < 2 && cIdx < 2) || (rIdx >= 2 && cIdx >= 2)
                   ? "rgba(255,255,255,0.03)"
                   : "var(--editor-bg)",
-              color: original[rIdx]?.[cIdx] 
-                ? "var(--text-primary)" 
-                : cell 
-                  ? "var(--syntax-type)" 
+              color: original[rIdx]?.[cIdx]
+                ? "var(--text-primary)"
+                : cell
+                  ? "var(--syntax-type)"
                   : "var(--text-muted)",
               borderRadius: `${rIdx === 0 && cIdx === 0 ? "10px" : "0"} ${rIdx === 0 && cIdx === 3 ? "10px" : "0"} ${rIdx === 3 && cIdx === 3 ? "10px" : "0"} ${rIdx === 3 && cIdx === 0 ? "10px" : "0"}`,
             }}
@@ -299,7 +298,7 @@ function SudokuGame() {
       </div>
 
       {isComplete && (
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           className="mt-4 p-4 rounded-xl text-center"
@@ -321,53 +320,82 @@ function SudokuGame() {
 
 // Memory Game - More Attractive
 function MemoryGame() {
-  const symbols = ["◆", "●", "■", "▲", "◇", "○", "□", "△"];
   const [cards, setCards] = useState<{ id: number; symbol: string; flipped: boolean; matched: boolean }[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [bestMoves, setBestMoves] = useState<number | null>(null);
+  const [checking, setChecking] = useState(false);
 
   const initGame = useCallback(() => {
+    const symbols = ["◆", "●", "■", "▲", "◇", "○", "□", "△"];
     const shuffled = [...symbols, ...symbols]
       .sort(() => Math.random() - 0.5)
       .map((symbol, index) => ({ id: index, symbol, flipped: false, matched: false }));
     setCards(shuffled);
     setFlippedCards([]);
     setMoves(0);
+    setChecking(false);
   }, []);
 
   useEffect(() => { initGame(); }, [initGame]);
 
   const flipCard = (id: number) => {
-    if (flippedCards.length === 2 || cards[id].flipped || cards[id].matched) return;
-    const newCards = [...cards];
-    newCards[id].flipped = true;
-    setCards(newCards);
-    setFlippedCards([...flippedCards, id]);
+    if (checking || flippedCards.length >= 2) return;
+
+    setCards(prev => {
+      if (prev[id].flipped || prev[id].matched) return prev;
+      const newCards = [...prev];
+      newCards[id] = { ...newCards[id], flipped: true };
+      return newCards;
+    });
+
+    setFlippedCards(prev => {
+      if (prev.length >= 2) return prev;
+      return [...prev, id];
+    });
   };
 
   useEffect(() => {
-    if (flippedCards.length === 2) {
-      setMoves((m) => m + 1);
-      const [first, second] = flippedCards;
-      if (cards[first].symbol === cards[second].symbol) {
-        const newCards = [...cards];
-        newCards[first].matched = newCards[second].matched = true;
-        setCards(newCards);
+    if (flippedCards.length !== 2) return;
+
+    setChecking(true);
+    setMoves((m) => m + 1);
+
+    const [first, second] = flippedCards;
+    const firstCard = cards[first];
+    const secondCard = cards[second];
+
+    if (firstCard?.symbol === secondCard?.symbol) {
+      // Match found
+      setCards(prev => {
+        const newCards = [...prev];
+        newCards[first] = { ...newCards[first], matched: true };
+        newCards[second] = { ...newCards[second], matched: true };
+        return newCards;
+      });
+      setFlippedCards([]);
+      setChecking(false);
+    } else {
+      // No match - flip back after delay
+      setTimeout(() => {
+        setCards(prev => {
+          const newCards = [...prev];
+          newCards[first] = { ...newCards[first], flipped: false };
+          newCards[second] = { ...newCards[second], flipped: false };
+          return newCards;
+        });
         setFlippedCards([]);
-        if (newCards.every(c => c.matched)) {
-          setBestMoves(prev => prev === null ? moves + 1 : Math.min(prev, moves + 1));
-        }
-      } else {
-        setTimeout(() => {
-          const newCards = [...cards];
-          newCards[first].flipped = newCards[second].flipped = false;
-          setCards(newCards);
-          setFlippedCards([]);
-        }, 800);
-      }
+        setChecking(false);
+      }, 800);
     }
-  }, [flippedCards, cards, moves]);
+  }, [flippedCards.length]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Check win condition separately
+  useEffect(() => {
+    if (cards.length > 0 && cards.every(c => c.matched)) {
+      setBestMoves(prev => prev === null ? moves : Math.min(prev, moves));
+    }
+  }, [cards, moves]);
 
   const isWon = cards.length > 0 && cards.every((c) => c.matched);
 
@@ -385,10 +413,10 @@ function MemoryGame() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-14 h-14 md:w-16 md:h-16 rounded-xl text-2xl flex items-center justify-center transition-all"
-            style={{ 
-              background: card.matched 
-                ? "linear-gradient(135deg, #4ec9b0, #3da890)" 
-                : card.flipped 
+            style={{
+              background: card.matched
+                ? "linear-gradient(135deg, #4ec9b0, #3da890)"
+                : card.flipped
                   ? "linear-gradient(135deg, var(--accent), #0066b3)"
                   : "var(--list-active)",
               border: `2px solid ${card.matched ? "#4ec9b0" : card.flipped ? "var(--accent)" : "var(--border-subtle)"}`,
@@ -400,7 +428,7 @@ function MemoryGame() {
         ))}
       </div>
       {isWon && (
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           className="mt-6 text-center"
@@ -469,7 +497,7 @@ function TicTacToe() {
           </p>
         )}
       </div>
-      
+
       <div className="grid grid-cols-3 gap-2">
         {board.map((cell, index) => (
           <motion.button
@@ -520,11 +548,11 @@ function TypingGame() {
     if (!isPlaying || timeLeft <= 0) return;
     const timer = setInterval(() => {
       setTimeLeft((t) => {
-        if (t <= 1) { 
+        if (t <= 1) {
           setIsPlaying(false);
           const wpm = score * 2;
           setBestWPM(prev => Math.max(prev, wpm));
-          return 0; 
+          return 0;
         }
         return t - 1;
       });
@@ -548,7 +576,7 @@ function TypingGame() {
         <span style={{ color: "var(--syntax-type)" }}>Words: {score}</span>
         <span style={{ color: timeLeft <= 10 ? "#f14c4c" : "var(--text-muted)" }}>{timeLeft}s</span>
       </div>
-      
+
       {isPlaying ? (
         <>
           <div className="w-full p-6 rounded-xl mb-4 text-center" style={{ background: "var(--list-active)", border: "1px solid var(--border-subtle)" }}>
@@ -608,7 +636,7 @@ export default function GamesSection() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           {/* Header */}
           <div className="mb-8">
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-4xl font-bold mb-2"
               style={{ background: "linear-gradient(135deg, var(--text-primary), var(--syntax-function))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
             >
@@ -629,9 +657,9 @@ export default function GamesSection() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="p-3 md:p-4 rounded-xl text-left transition-all min-w-[110px] md:min-w-[130px]"
-                  style={{ 
-                    background: activeGame === game.id 
-                      ? `linear-gradient(135deg, ${game.color}30, ${game.color}10)` 
+                  style={{
+                    background: activeGame === game.id
+                      ? `linear-gradient(135deg, ${game.color}30, ${game.color}10)`
                       : "rgba(255,255,255,0.02)",
                     border: `2px solid ${activeGame === game.id ? game.color : "var(--border-subtle)"}`,
                     boxShadow: activeGame === game.id ? `0 4px 20px ${game.color}20` : "none",
@@ -649,13 +677,13 @@ export default function GamesSection() {
           </div>
 
           {/* Game Area */}
-          <motion.div 
+          <motion.div
             key={activeGame}
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
             className="p-6 md:p-8 rounded-2xl flex justify-center"
-            style={{ 
+            style={{
               background: `linear-gradient(135deg, ${activeGameData?.color}08, transparent)`,
               border: `1px solid ${activeGameData?.color}20`,
             }}
