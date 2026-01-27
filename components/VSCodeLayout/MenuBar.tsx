@@ -31,12 +31,12 @@ interface MenuGroup {
   items: MenuItem[];
 }
 
-export default function MenuBar({ 
-  onHelpClick, 
-  onMenuClick, 
+export default function MenuBar({
+  onHelpClick,
+  onMenuClick,
   onTerminalToggle,
   currentTheme,
-  onThemeChange 
+  onThemeChange
 }: MenuBarProps) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -63,7 +63,7 @@ export default function MenuBar({
     {
       label: "File",
       items: [
-        { label: "Download CV/Resume", icon: "↓", action: () => window.open("https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing", "_blank") },
+        { label: "Download CV/Resume", icon: "↓", action: () => window.open(process.env.NEXT_PUBLIC_RESUME_URL || "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing", "_blank") },
         { label: "divider" },
         { label: "View on GitHub", icon: "→", action: () => window.open("https://github.com/wymdev", "_blank") },
       ],
@@ -77,11 +77,13 @@ export default function MenuBar({
     {
       label: "View",
       items: [
-        { label: "Theme", icon: "◐", submenu: themes.map(t => ({ 
-          label: t.name, 
-          action: () => handleThemeChange(t),
-          active: currentTheme?.id === t.id
-        }))},
+        {
+          label: "Theme", icon: "◐", submenu: themes.map(t => ({
+            label: t.name,
+            action: () => handleThemeChange(t),
+            active: currentTheme?.id === t.id
+          }))
+        },
       ],
     },
     {
@@ -103,7 +105,7 @@ export default function MenuBar({
     <div
       ref={menuRef}
       className="flex items-center h-[44px] md:h-[30px] select-none relative z-50"
-      style={{ 
+      style={{
         background: "var(--titlebar-bg)",
         borderBottom: "1px solid var(--border-subtle)"
       }}
@@ -114,7 +116,7 @@ export default function MenuBar({
         className="md:hidden flex items-center justify-center w-10 h-full hover:bg-white/10 transition-colors"
       >
         <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" style={{ color: "var(--text-secondary)" }}>
-          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
         </svg>
       </button>
 
@@ -158,10 +160,10 @@ export default function MenuBar({
                 >
                   {menu.items.map((item, idx) => (
                     item.label === "divider" ? (
-                      <div 
-                        key={idx} 
-                        className="my-1 mx-2 h-px" 
-                        style={{ background: "var(--border-subtle)" }} 
+                      <div
+                        key={idx}
+                        className="my-1 mx-2 h-px"
+                        style={{ background: "var(--border-subtle)" }}
                       />
                     ) : item.submenu ? (
                       <div key={idx} className="relative group">
@@ -174,11 +176,11 @@ export default function MenuBar({
                             {item.label}
                           </span>
                           <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
-                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                           </svg>
                         </button>
                         {/* Theme Submenu */}
-                        <div 
+                        <div
                           className="absolute left-full top-0 min-w-[180px] py-1 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all"
                           style={{
                             background: "var(--sidebar-bg)",
@@ -196,7 +198,7 @@ export default function MenuBar({
                               <span>{subItem.label}</span>
                               {subItem.active && (
                                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" style={{ color: "var(--accent)" }}>
-                                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                 </svg>
                               )}
                             </button>
@@ -231,7 +233,7 @@ export default function MenuBar({
       </div>
 
       {/* Title */}
-      <div 
+      <div
         className="flex-1 text-center text-[12px] md:-ml-20"
         style={{ color: "var(--text-secondary)" }}
       >
@@ -245,7 +247,7 @@ export default function MenuBar({
         className="md:hidden flex items-center justify-center w-10 h-full hover:bg-white/10 transition-colors"
       >
         <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" style={{ color: "var(--text-secondary)" }}>
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
         </svg>
       </button>
     </div>

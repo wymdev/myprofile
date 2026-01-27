@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Resume URL from environment variable
+const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing";
+
 // Complete CV Data as knowledge base
 const CV_DATA = `
 === WAI YAN MAING - FULL STACK DEVELOPER ===
@@ -9,7 +12,7 @@ CONTACT INFORMATION
 - Email: waiyanmaing.dev@gmail.com
 - Address: 37 Lasalle 19th Alley, Bang Na Tai, Bangkok City, Thailand
 - Website: https://waiyanmaing.me
-- Resume Download: https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing
+- Resume Download: ${RESUME_URL}
 
 ABOUT ME
 I am a Full Stack Developer with strong expertise in Laravel, Node.js, React, React Native, jQuery, and JavaScript, specializing in delivering scalable and user-friendly web and mobile applications. My backend proficiency in Laravel and Node.js combined with modern frontend skills allows me to build robust end-to-end solutions.
@@ -142,7 +145,7 @@ UNDERSTANDING USER INTENT:
 - "experience", "work", "job", "history", "career", "previous", "old work" = Show ALL work experience
 - "skills", "tech", "stack", "technologies" = Show technical skills
 - "contact", "email", "phone", "reach" = Show contact information
-- "resume", "cv", "download" = Provide resume download link: https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing
+- "resume", "cv", "download" = Provide resume download link: ${RESUME_URL}
 - "education", "degree", "study" = Show education
 - "current", "now", "doing" = Show current job at Thai Beverage
 - "detail", "more" = Provide more details on the last discussed topic
@@ -160,11 +163,11 @@ RESPONSE FORMAT:
 export async function POST(request: NextRequest) {
   try {
     const { message } = await request.json();
-    
+
     const apiKey = process.env.OPENAI_API_KEY;
-    
+
     if (!apiKey) {
-      return NextResponse.json({ 
+      return NextResponse.json({
         response: generateFallbackResponse(message),
         source: "fallback"
       });
@@ -190,21 +193,21 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const error = await response.json();
       console.error("OpenAI API error:", error);
-      return NextResponse.json({ 
+      return NextResponse.json({
         response: generateFallbackResponse(message),
         source: "fallback"
       });
     }
 
     const data = await response.json();
-    return NextResponse.json({ 
+    return NextResponse.json({
       response: data.choices[0].message.content,
       source: "openai"
     });
 
   } catch (error) {
     console.error("Chat API error:", error);
-    return NextResponse.json({ 
+    return NextResponse.json({
       response: "I apologize for the technical difficulty. Please try again, or contact Wai Yan directly at waiyanmaing.dev@gmail.com",
       source: "error"
     });
@@ -216,10 +219,10 @@ function generateFallbackResponse(input: string): string {
   const lower = input.toLowerCase();
 
   // Greetings - catch various greeting patterns
-  if (lower.match(/^(hi|hello|hey|good|greetings|yo|howdy|what'?s up|sup|morning|afternoon|evening)/i) || 
-      lower.length < 5 || 
-      lower === "hi" || 
-      lower === "hello") {
+  if (lower.match(/^(hi|hello|hey|good|greetings|yo|howdy|what'?s up|sup|morning|afternoon|evening)/i) ||
+    lower.length < 5 ||
+    lower === "hi" ||
+    lower === "hello") {
     return `Hello! Welcome to Wai Yan Maing's portfolio.
 
 I can help you learn about:
@@ -230,6 +233,34 @@ I can help you learn about:
 • **Resume** - Download PDF
 
 What would you like to know?`;
+  }
+
+  // Thanks / Gratitude
+  if (lower.match(/thank|thanks|thx|appreciate|helpful|great|awesome|perfect|nice|cool|good job|well done/)) {
+    return `You're welcome! 😊
+
+Is there anything else you'd like to know about Wai Yan Maing? I can help with:
+• Work experience & projects
+• Technical skills
+• Contact information
+• Resume download`;
+  }
+
+  // Goodbye / Farewell
+  if (lower.match(/bye|goodbye|see you|later|take care|cya|farewell|gtg|gotta go/)) {
+    return `Goodbye! Thanks for visiting Wai Yan Maing's portfolio. 
+
+Feel free to come back anytime, or reach out directly at **waiyanmaing.dev@gmail.com**. Take care! 👋`;
+  }
+
+  // Yes / No / Affirmatives
+  if (lower.match(/^(yes|yeah|yep|yup|ok|okay|sure|no|nope|nah)$/)) {
+    return `I'm here to help! What would you like to know about Wai Yan Maing?
+
+• **Experience** - 7+ years across 4 companies
+• **Skills** - Full Stack, AI, DevOps
+• **Contact** - Email, phone, website
+• **Resume** - Download PDF`;
   }
 
   // Experience / Work History / Jobs
@@ -302,7 +333,7 @@ Git, Azure DevOps, Jenkins, CI/CD`;
 **Location:** Bangkok, Thailand
 **Website:** https://waiyanmaing.me
 
-**Download Resume:** [Click Here](https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing)
+**Download Resume:** [Click Here](${RESUME_URL})
 
 Feel free to reach out!`;
   }
@@ -312,7 +343,7 @@ Feel free to reach out!`;
     return `**Download Wai Yan's Resume**
 
 You can view and download the resume here:
-**[Download CV/Resume](https://drive.google.com/file/d/1bysMrKppwp4xCgqJbOo2-tqJ488H30Ux/view?usp=sharing)**
+**[Download CV/Resume](${RESUME_URL})**
 
 Or visit the website: https://waiyanmaing.me`;
   }
