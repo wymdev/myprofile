@@ -116,45 +116,54 @@ function SnakeGame() {
       ctx.beginPath();
       ctx.arc(state.food.x * currentCellSize + currentCellSize / 2, state.food.y * currentCellSize + currentCellSize / 2, currentCellSize / 2 - 2, 0, Math.PI * 2);
       ctx.fill();
-    }, 180);
+    }, 250);
 
     return () => clearInterval(gameLoop);
   }, [isPlaying, gameOver, score, canvasSize]);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="flex justify-between w-full mb-3 text-[13px] max-w-[320px]">
-        <span style={{ color: "var(--syntax-type)" }}>Score: {score}</span>
-        <span style={{ color: "var(--text-muted)" }}>Best: {highScore}</span>
+    <div className="flex flex-col items-center w-full animate-in fade-in zoom-in duration-500">
+      <div className="flex justify-between w-full mb-4 text-[13px] max-w-[320px] font-mono">
+        <span className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">SCORE: {score.toString().padStart(4, '0')}</span>
+        <span className="text-slate-500">HI: {highScore.toString().padStart(4, '0')}</span>
       </div>
-      <div className="relative">
-        <canvas ref={canvasRef} width={canvasSize} height={canvasSize} className="rounded-xl" style={{ border: "2px solid var(--border-color)" }} />
+      <div className="relative group">
+        <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+        <canvas ref={canvasRef} width={canvasSize} height={canvasSize} className="relative rounded-xl shadow-2xl" style={{ border: "2px solid #1e293b", background: "#020617" }} />
         {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-xl" style={{ background: "rgba(0,0,0,0.9)" }}>
-            <div className="text-center p-4">
-              {gameOver && <p className="text-xl mb-2" style={{ color: "#f14c4c" }}>Game Over!</p>}
-              <p className="text-[12px] mb-4" style={{ color: "var(--text-muted)" }}>Use arrow keys or swipe to play</p>
-              <button onClick={() => { resetGame(); setIsPlaying(true); }} className="px-6 py-2 rounded-lg font-medium" style={{ background: "var(--accent)", color: "#fff" }}>
-                {gameOver ? "Play Again" : "Start Game"}
+          <div className="absolute inset-0 flex items-center justify-center rounded-xl" style={{ background: "rgba(2, 6, 23, 0.9)", backdropFilter: "blur(8px)" }}>
+            <div className="text-center p-8 bg-slate-900/50 rounded-2xl border border-white/10 shadow-2xl">
+              {gameOver && (
+                <div className="mb-6">
+                  <p className="text-xs font-bold text-red-500 tracking-[0.3em] mb-1">GAME OVER</p>
+                  <p className="text-4xl font-black text-white">{score}</p>
+                </div>
+              )}
+              <h4 className="text-white font-black text-lg mb-1 tracking-tight">NEON SNAKE</h4>
+              <p className="text-[10px] mb-8 text-slate-400 uppercase tracking-widest font-medium">Classic arcade re-imagined</p>
+              <button 
+                onClick={() => { resetGame(); setIsPlaying(true); }} 
+                className="group relative px-10 py-4 bg-white text-black rounded-xl font-black tracking-tighter transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              >
+                {gameOver ? "PLAY AGAIN" : "START SESSION"}
               </button>
             </div>
           </div>
         )}
       </div>
       {/* Mobile Controls */}
-      {isPlaying && (
-        <div className="mt-4 grid grid-cols-3 gap-2 md:hidden">
-          <div />
-          <button onClick={() => handleDirection({ x: 0, y: -1 })} className="w-12 h-12 rounded-lg flex items-center justify-center text-xl" style={{ background: "var(--list-active)" }}>↑</button>
-          <div />
-          <button onClick={() => handleDirection({ x: -1, y: 0 })} className="w-12 h-12 rounded-lg flex items-center justify-center text-xl" style={{ background: "var(--list-active)" }}>←</button>
-          <button onClick={() => handleDirection({ x: 0, y: 1 })} className="w-12 h-12 rounded-lg flex items-center justify-center text-xl" style={{ background: "var(--list-active)" }}>↓</button>
-          <button onClick={() => handleDirection({ x: 1, y: 0 })} className="w-12 h-12 rounded-lg flex items-center justify-center text-xl" style={{ background: "var(--list-active)" }}>→</button>
-        </div>
-      )}
+      <div className="mt-8 grid grid-cols-3 gap-3 p-1 bg-slate-900/50 rounded-2xl border border-white/5 md:hidden">
+        <div />
+        <button onClick={() => handleDirection({ x: 0, y: -1 })} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 active:border-b-0 active:translate-y-1 transition-all text-white">↑</button>
+        <div />
+        <button onClick={() => handleDirection({ x: -1, y: 0 })} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 active:border-b-0 active:translate-y-1 transition-all text-white">←</button>
+        <button onClick={() => handleDirection({ x: 0, y: 1 })} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 active:border-b-0 active:translate-y-1 transition-all text-white">↓</button>
+        <button onClick={() => handleDirection({ x: 1, y: 0 })} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 active:border-b-0 active:translate-y-1 transition-all text-white">→</button>
+      </div>
     </div>
   );
 }
+
 
 // Mini Sudoku (4x4)
 function SudokuGame() {
@@ -617,12 +626,175 @@ function TypingGame() {
   );
 }
 
+// Galaxy Shooter - Simple 2D Shooter
+function GalaxyShooter() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [canvasSize, setCanvasSize] = useState(320);
+
+  const gameStateRef = useRef({
+    player: { x: 160, y: 280, width: 30, height: 30 },
+    bullets: [] as { x: number; y: number }[],
+    enemies: [] as { x: number; y: number; speed: number }[],
+    lastSpawn: 0,
+  });
+
+  useEffect(() => {
+    const updateSize = () => {
+      const size = Math.min(320, window.innerWidth - 80);
+      setCanvasSize(size);
+      gameStateRef.current.player.x = size / 2;
+      gameStateRef.current.player.y = size - 40;
+    };
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  const resetGame = useCallback(() => {
+    gameStateRef.current = {
+      player: { x: canvasSize / 2, y: canvasSize - 40, width: 30, height: 30 },
+      bullets: [],
+      enemies: [],
+      lastSpawn: 0,
+    };
+    setScore(0);
+    setGameOver(false);
+  }, [canvasSize]);
+
+  useEffect(() => {
+    if (!isPlaying || gameOver) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const gameLoop = setInterval(() => {
+      const state = gameStateRef.current;
+
+      // Spawn enemies - Slower spawn
+      const now = Date.now();
+      if (now - state.lastSpawn > 1800) {
+        state.enemies.push({
+          x: Math.random() * (canvasSize - 20),
+          y: -20,
+          speed: 0.6 + Math.random() * 1.2, // Slower enemy speed
+        });
+        state.lastSpawn = now;
+      }
+
+      // Update bullets
+      state.bullets = state.bullets.filter(b => b.y > 0);
+      state.bullets.forEach(b => b.y -= 4); // Slower bullet speed
+
+
+      // Update enemies
+      state.enemies.forEach(e => e.y += e.speed);
+      const hitEnemy = state.enemies.findIndex(e => e.y > canvasSize);
+      if (hitEnemy > -1) {
+          setGameOver(true);
+          setIsPlaying(false);
+      }
+
+      // Collision detection
+      state.bullets.forEach((b, bi) => {
+        state.enemies.forEach((e, ei) => {
+          if (b.x > e.x && b.x < e.x + 20 && b.y > e.y && b.y < e.y + 20) {
+            state.bullets.splice(bi, 1);
+            state.enemies.splice(ei, 1);
+            setScore(s => s + 10);
+          }
+        });
+      });
+
+      // Draw
+      ctx.fillStyle = "#0d1117";
+      ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+      // Player
+      ctx.fillStyle = "#0078d4";
+      ctx.beginPath();
+      ctx.moveTo(state.player.x, state.player.y);
+      ctx.lineTo(state.player.x - 15, state.player.y + 20);
+      ctx.lineTo(state.player.x + 15, state.player.y + 20);
+      ctx.fill();
+
+      // Bullets
+      ctx.fillStyle = "#ff0000";
+      state.bullets.forEach(b => ctx.fillRect(b.x - 2, b.y, 4, 10));
+
+      // Enemies
+      ctx.fillStyle = "#f14c4c";
+      state.enemies.forEach(e => ctx.fillRect(e.x, e.y, 20, 20));
+
+    }, 1000 / 60);
+
+    return () => clearInterval(gameLoop);
+  }, [isPlaying, gameOver, canvasSize]);
+
+  const move = (dir: number) => {
+    const s = gameStateRef.current;
+    s.player.x = Math.max(15, Math.min(canvasSize - 15, s.player.x + dir * 20));
+  };
+
+  const shoot = () => {
+    gameStateRef.current.bullets.push({ x: gameStateRef.current.player.x, y: gameStateRef.current.player.y });
+  };
+
+  return (
+    <div className="flex flex-col items-center w-full animate-in fade-in zoom-in duration-500">
+      <div className="flex justify-between w-full mb-4 text-[13px] max-w-[320px] font-mono">
+        <span className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">SCORE: {score.toString().padStart(4, '0')}</span>
+        <span className="text-slate-500">SECTOR-7</span>
+      </div>
+      <div className="relative group">
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+        <canvas ref={canvasRef} width={canvasSize} height={canvasSize} className="relative rounded-xl shadow-2xl" style={{ border: "2px solid #1e293b", background: "radial-gradient(circle at center, #1e293b 0%, #020617 100%)" }} />
+        {!isPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-xl" style={{ background: "rgba(2, 6, 23, 0.85)", backdropFilter: "blur(8px)" }}>
+            <div className="text-center p-8 bg-slate-900/50 rounded-2xl border border-white/10 shadow-2xl">
+              {gameOver && (
+                <div className="mb-6">
+                  <p className="text-xs font-bold text-red-500 tracking-[0.3em] mb-1">MISSION FAILED</p>
+                  <p className="text-4xl font-black text-white">{score}</p>
+                </div>
+              )}
+              <h4 className="text-white font-black text-lg mb-1 tracking-tight">GALAXY DEFENDER</h4>
+              <p className="text-[10px] mb-8 text-slate-400 uppercase tracking-widest font-medium">Clear the sector of all hostiles</p>
+              <button 
+                onClick={() => { resetGame(); setIsPlaying(true); }} 
+                className="group relative px-10 py-4 bg-white text-black rounded-xl font-black tracking-tighter transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              >
+                {gameOver ? "REDEPLOY" : "INITIATE MISSION"}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="mt-8 flex gap-8 items-end">
+        <div className="flex gap-2 p-1 bg-slate-900/50 rounded-2xl border border-white/5">
+          <button onClick={() => move(-1)} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 hover:bg-slate-700 active:border-b-0 active:translate-y-1 transition-all text-white">←</button>
+          <button onClick={() => move(1)} className="w-14 h-14 rounded-xl flex items-center justify-center text-xl bg-slate-800 border-b-4 border-slate-950 hover:bg-slate-700 active:border-b-0 active:translate-y-1 transition-all text-white">→</button>
+        </div>
+        <button onClick={shoot} className="w-24 h-20 rounded-2xl flex flex-col items-center justify-center bg-red-600 border-b-[6px] border-red-900 hover:bg-red-500 active:border-b-0 active:translate-y-1.5 transition-all text-white shadow-[0_10px_30px_rgba(220,38,38,0.3)] group">
+          <span className="text-2xl mb-1 group-active:scale-125 transition-transform">🔥</span>
+          <span className="text-[10px] font-black tracking-widest">FIRE</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
 const games = [
   { id: "snake", name: "Snake", description: "Classic arcade", component: SnakeGame, color: "#4ec9b0" },
+  { id: "galaxy", name: "Galaxy Shooter", description: "2D space combat", component: GalaxyShooter, color: "#0078d4" },
   { id: "sudoku", name: "Sudoku", description: "4x4 puzzle", component: SudokuGame, color: "#dcdcaa" },
-  { id: "memory", name: "Memory", description: "Match pairs", component: MemoryGame, color: "#0078d4" },
+  { id: "memory", name: "Memory", description: "Match pairs", component: MemoryGame, color: "#569cd6" },
   { id: "tictactoe", name: "Tic Tac Toe", description: "X vs O", component: TicTacToe, color: "#ce9178" },
-  { id: "typing", name: "Typing", description: "Test WPM", component: TypingGame, color: "#569cd6" },
+  { id: "typing", name: "Typing", description: "Test WPM", component: TypingGame, color: "#f14c4c" },
 ];
 
 export default function GamesSection() {

@@ -20,7 +20,9 @@ const fileTree: FileItem[] = [
       { name: "home.tsx", type: "file", section: "home" },
       { name: "about.tsx", type: "file", section: "about" },
       { name: "projects.ts", type: "file", section: "projects" },
+      { name: "realworldprojects.ts", type: "file", section: "realworldprojects" },
       { name: "skills.json", type: "file", section: "skills" },
+
       { name: "contact.css", type: "file", section: "contact" },
       { name: "games.py", type: "file", section: "games" },
       { name: "README.md", type: "file", section: "github" },
@@ -192,7 +194,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
               >
                 {Icons.chevronDown}
               </span>
-              antigravity-portfolio
+              my-portfolio
             </button>
             <div className="mt-1">
               {renderFileTree(fileTree)}

@@ -12,7 +12,9 @@ const tabs: Tab[] = [
   { id: "home", name: "home.tsx" },
   { id: "about", name: "about.tsx" },
   { id: "projects", name: "projects.ts" },
+  { id: "realworldprojects", name: "realworldprojects.ts" },
   { id: "skills", name: "skills.json" },
+
   { id: "contact", name: "contact.css" },
   { id: "games", name: "games.py" },
   { id: "github", name: "README.md" },
