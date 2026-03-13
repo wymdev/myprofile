@@ -126,7 +126,15 @@ CAREER SUMMARY
 - Companies Worked: 4 companies
 - Current Location: Bangkok, Thailand
 - Availability: Open to new opportunities
+
+PROMINENT PROJECTS:
+- KidGame (Interactive learning for kids): https://kidgame.xynotechmm.online/
+- Hmaryu Store (E-commerce): https://hmaryu.store/
+- AI Warehouse Inventory Detection (Thai Beverage)
+- AI-Powered Chatbot (Grand Royal Group)
+- Sales Forecasting AI Agent (Grand Royal Group)
 `;
+
 
 // System prompt for OpenAI
 function getSystemPrompt() {

@@ -157,12 +157,19 @@ I have experience as a Team Lead, driving projects with Agile methodologies to e
       company: "Grand Royal Group",
     },
     {
+      name: "KidGame",
+      description: "Interactive learning and gaming platform for kids",
+      tech: ["HTML5", "CSS3", "JavaScript", "Educational Games"],
+      url: "https://kidgame.xynotechmm.online/",
+    },
+    {
       name: "Cross-Platform Mobile Apps",
       description: "Mobile applications built with React Native, Cordova, and Framework7",
       tech: ["React Native", "Cordova", "Framework7"],
       company: "AGGA.IO",
     },
   ],
+
 
   // Stats
   stats: {

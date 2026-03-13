@@ -36,7 +36,16 @@ const projects = [
     color: "#ce9178",
     isBlocked: false,
   },
+  {
+    id: "kidgame",
+    name: "KidGame",
+    url: "https://kidgame.xynotechmm.online/",
+    description: "Interactive learning and gaming platform for kids",
+    color: "#ffbd2e",
+    isBlocked: false,
+  },
 ];
+
 
 
 export default function RealWorldProjectsSection() {
