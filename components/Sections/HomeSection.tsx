@@ -3,6 +3,8 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
+import { portfolioConfig } from "@/config/portfolio.config";
+
 const roles = [
   "Full Stack Developer",
   "AI Solution Architect",
@@ -11,10 +13,10 @@ const roles = [
   "Laravel Expert",
 ];
 
-const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing";
-const GITHUB_URL = "https://github.com/wymdev";
-const LINKEDIN_URL = "https://www.linkedin.com/in/waiyanmaing-dev";
-const EMAIL = "waiyanmaing.dev@gmail.com";
+const GITHUB_URL = portfolioConfig.personal.github;
+
+const LINKEDIN_URL = portfolioConfig.personal.linkedin;
+const EMAIL = portfolioConfig.personal.email;
 
 export default function HomeSection() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -223,9 +225,8 @@ export default function HomeSection() {
                   Hire Me
                 </motion.a>
                 <motion.a
-                  href={RESUME_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={portfolioConfig.personal.resumeUrl}
+                  download={portfolioConfig.personal.resumeFileName}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-5 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-[13px] md:text-[15px] transition-all flex items-center gap-2"
@@ -240,6 +241,7 @@ export default function HomeSection() {
                   </svg>
                   Download CV
                 </motion.a>
+
                 <motion.a
                   href={GITHUB_URL}
                   target="_blank"

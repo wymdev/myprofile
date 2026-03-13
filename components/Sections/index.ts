@@ -7,5 +7,7 @@ export { default as GamesSection } from "./GamesSection";
 export { default as GitHubSection } from "./GitHubSection";
 export { default as BlogSection } from "./BlogSection";
 export { default as RealWorldProjectsSection } from "./RealWorldProjectsSection";
+export { default as ResumeSection } from "./ResumeSection";
+
 
 

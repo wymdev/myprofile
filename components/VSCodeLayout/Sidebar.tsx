@@ -20,7 +20,9 @@ const fileTree: FileItem[] = [
       { name: "home.tsx", type: "file", section: "home" },
       { name: "about.tsx", type: "file", section: "about" },
       { name: "projects.ts", type: "file", section: "projects" },
+      { name: "resume.pdf", type: "file", section: "resume" },
       { name: "realworldprojects.ts", type: "file", section: "realworldprojects" },
+
       { name: "skills.json", type: "file", section: "skills" },
 
       { name: "contact.css", type: "file", section: "contact" },

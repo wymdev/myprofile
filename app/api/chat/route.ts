@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Resume URL from environment variable
-const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing";
+// Resume URL - Local path
+const RESUME_URL = "/resume.pdf";
 
 // Complete CV Data as knowledge base
 const CV_DATA = `

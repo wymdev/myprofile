@@ -156,8 +156,7 @@ export default function ContactSection() {
               {/* Download Resume */}
               <motion.a
                 href={config.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                download={config.resumeFileName}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full p-4 rounded-xl flex items-center gap-3 transition-all"
@@ -186,6 +185,7 @@ export default function ContactSection() {
                   <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                 </svg>
               </motion.a>
+
             </div>
 
             {/* Contact Info Cards */}

@@ -17,9 +17,9 @@ export const portfolioConfig = {
     linkedin: "https://www.linkedin.com/in/waiyanmaing-dev",
     twitter: "",
 
-    // Resume/CV Download Link (Uses env variables for easy updates)
-    resumeUrl: process.env.NEXT_PUBLIC_RESUME_URL || "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing",
-    resumeDownloadUrl: process.env.NEXT_PUBLIC_RESUME_DOWNLOAD_URL || "https://drive.google.com/uc?export=download&id=1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9",
+    // Resume/CV Download Link (Uses local public file)
+    resumeUrl: "/resume.pdf",
+    resumeDownloadUrl: "/resume.pdf",
     resumeFileName: "Wai_Yan_Maing_CV.pdf",
 
     avatar: "",

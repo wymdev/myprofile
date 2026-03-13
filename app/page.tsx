@@ -19,7 +19,9 @@ import {
   GitHubSection,
   BlogSection,
   RealWorldProjectsSection,
+  ResumeSection,
 } from "@/components/Sections";
+
 
 import { Terminal } from "@/components/Terminal";
 import { AIChat, AIButton } from "@/components/AI";
@@ -30,7 +32,9 @@ const fileMap: Record<string, string> = {
   home: "home.tsx",
   about: "about.tsx",
   projects: "projects.ts",
+  resume: "resume.pdf",
   realworldprojects: "realworldprojects.ts",
+
   skills: "skills.json",
   contact: "contact.css",
   games: "games.py",
@@ -44,7 +48,9 @@ const sectionComponents: Record<string, React.ComponentType> = {
   about: AboutSection,
   projects: ProjectsSection,
   realworldprojects: RealWorldProjectsSection,
+  resume: ResumeSection,
   skills: SkillsSection,
+
 
   contact: ContactSection,
   games: GamesSection,
