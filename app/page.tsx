@@ -336,7 +336,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: "100%", opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mx-auto max-w-[300px]"
+          className="mx-auto max-w-[450px] w-full"
         >
           <div className="h-1 bg-gray-800 rounded-full overflow-hidden mb-2">
             <motion.div
@@ -347,9 +347,10 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               }}
             />
           </div>
-          <div className="flex justify-between text-xs text-gray-500">
-            <span>{loadingText}...</span>
-            <span>{Math.round(progress)}%</span>
+          <div className="text-center text-xs text-gray-500 mt-3 flex items-center justify-center gap-1.5 font-medium">
+            <span>{loadingText}</span>
+            <span className="w-1 h-1 rounded-full bg-gray-600" />
+            <span className="font-mono text-[#0078d4]">{Math.round(progress)}%</span>
           </div>
         </motion.div>
       </div>

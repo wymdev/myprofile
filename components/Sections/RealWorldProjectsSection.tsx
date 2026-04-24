@@ -24,8 +24,8 @@ const projects = [
     id: "beebudget",
     name: "BeeBudget",
     url: "https://play.google.com/store/apps/details?id=com.xynotechmm.beebudget",
-    description: "Personal Budgeting App (Closed Testing)",
-    color: "#f14c4c",
+    description: "Smart Personal Finance App (Production)",
+    color: "#fbbf24",
     isBlocked: true,
   },
   {
@@ -130,32 +130,35 @@ export default function RealWorldProjectsSection() {
                        className="absolute inset-0 rounded-2xl blur-xl opacity-20"
                        style={{ background: activeProject.color }}
                      />
-                     <div className="relative w-full h-full bg-gray-900 border border-white/10 rounded-2xl flex items-center justify-center shadow-xl">
-                        <svg viewBox="0 0 24 24" className="w-10 h-10" style={{ color: activeProject.color }} fill="currentColor">
-                          <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
-                        </svg>
+                     <div className="relative w-full h-full bg-gray-900 border border-white/10 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                        <img 
+                          src="https://play-lh.googleusercontent.com/yxWkF6NwV4bVpMe8oSo8yd-5htZnbVwAfl9nqtLdt5wrBnfzfV1cwHGcdcDcyMTt_m0z680dHcvZzexBP6VvAA=w480-h960-rw" 
+                          alt="Project Icon"
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                      </div>
                    </motion.div>
 
-                   <motion.h3 
-                     initial={{ y: 10, opacity: 0 }}
-                     animate={{ y: 0, opacity: 1 }}
-                     transition={{ delay: 0.1 }}
-                     className="text-xl font-bold text-white mb-2"
-                   >
-                     {activeProject.id === "beebudget" ? "Closed Testing Phase" : "Security Restriction"}
-                   </motion.h3>
+                    <motion.h3 
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
+                      className="text-xl font-bold text-white mb-2"
+                    >
+                      {activeProject.id === "beebudget" ? "Live on Google Play" : "Security Restriction"}
+                    </motion.h3>
 
-                   <motion.p 
-                     initial={{ y: 10, opacity: 0 }}
-                     animate={{ y: 0, opacity: 1 }}
-                     transition={{ delay: 0.2 }}
-                     className="text-gray-400 mb-6 text-sm max-w-lg mx-auto"
-                   >
-                     {activeProject.id === "beebudget" 
-                       ? "BeeBudget is currently in its closed testing phase on the Google Play Store. For security, these pages cannot be embedded directly."
-                       : `${activeProject.name} has a strict security policy (CSP) that prevents it from being displayed inside an iframe to protect user data.`}
-                   </motion.p>
+                    <motion.p 
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-gray-400 mb-6 text-sm max-w-lg mx-auto"
+                    >
+                      {activeProject.id === "beebudget" 
+                        ? "BeeBudget is officially live! Since it's a mobile application on the Play Store, it cannot be embedded here directly for security and UX reasons."
+                        : `${activeProject.name} has a strict security policy (CSP) that prevents it from being displayed inside an iframe to protect user data.`}
+                    </motion.p>
                    
                    <motion.div
                      initial={{ y: 10, opacity: 0 }}

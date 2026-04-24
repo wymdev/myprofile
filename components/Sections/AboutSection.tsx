@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const LINKEDIN_URL = "https://www.linkedin.com/in/waiyanmaing-dev";
 const GITHUB_URL = "https://github.com/wymdev";
 const EMAIL = "waiyanmaing.dev@gmail.com";
-const WEBSITE = "https://waiyanmaing.me";
+const WEBSITE = "https://waiyanmaing.space";
 
 export default function AboutSection() {
   return (

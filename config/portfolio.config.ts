@@ -157,10 +157,23 @@ I have experience as a Team Lead, driving projects with Agile methodologies to e
       company: "Grand Royal Group",
     },
     {
+      "name": "BeeBudget",
+      "description": "Smart Personal Finance Management app with multi-account support, budget planning, and AI-powered financial insights (Production)",
+      "tech": ["React Native", "Expo", "SQLite", "Zustand", "Gemini AI"],
+      "url": "https://play.google.com/store/apps/details?id=com.xynotechmm.beebudget",
+      "image": "https://play-lh.googleusercontent.com/yxWkF6NwV4bVpMe8oSo8yd-5htZnbVwAfl9nqtLdt5wrBnfzfV1cwHGcdcDcyMTt_m0z680dHcvZzexBP6VvAA=w480-h960-rw"
+    },
+    {
       name: "KidGame",
       description: "Interactive learning and gaming platform for kids",
       tech: ["HTML5", "CSS3", "JavaScript", "Educational Games"],
       url: "https://kidgame.xynotechmm.online/",
+    },
+    {
+      name: "Hmaryu Store",
+      description: "Cross-border proxy shopping and e-commerce platform",
+      tech: ["Next.js", "React", "Node.js", "Laravel"],
+      url: "https://hmaryu.store/",
     },
     {
       name: "Cross-Platform Mobile Apps",

@@ -1,0 +1,168 @@
+{
+  "personal_info": {
+    "name": "Wai Yan Maing",
+    "title": "Full Stack Developer",
+    "phone": "0652940833",
+    "email": "waiyanmaing.dev@gmail.com",
+    "address": "37 Lasalle 19th Alley, Bang Na Tai, Bangkok City, Thailand",
+    "website": "https://waiyanmaing.space",
+    "location": "Bangkok, Thailand"
+  },
+  "about": "Full Stack Developer with 7+ years of experience specializing in Laravel, Node.js, React, and React Native. Passionate about AI research, RAG-based knowledge bots, and Sales Forecasting AI Agents. Currently an AI Solution Architect at Thai Beverage.",
+  "experience": [
+    {
+      "role": "AI Solution Architect & Research Developer",
+      "company": "Thai Beverage Public Company Limited",
+      "period": "2025 - Present",
+      "highlights": [
+        "Designed AI computer vision architecture for warehouse inventory detection using YOLO and deep learning",
+        "Architected cross-platform mobile solutions by converting Go-Lang projects to Android AAR and iOS XCFramework using gomobile",
+        "Enabled offline-first inventory processing on mobile devices"
+      ]
+    },
+    {
+      "role": "Software Development Executive",
+      "company": "Grand Royal Group International",
+      "period": "2023 - 2025 (September)",
+      "highlights": [
+        "Developed scalable web applications using React.js, Node.js, and Laravel",
+        "Built AI-powered chatbot using Python, OpenAI embeddings, and FAISS",
+        "Developed Sales Forecasting AI Agent with n8n, MSSQL, and prompt engineering",
+        "Led infrastructure transformation with Kubernetes and Docker"
+      ]
+    },
+    {
+      "role": "Senior Team Lead",
+      "company": "DirAce Technology (Japan)",
+      "period": "2023 (Feb - March)",
+      "highlights": [
+        "Managed testing environments with international teams from Japan",
+        "Implemented responsive designs with full cross-browser compatibility"
+      ]
+    },
+    {
+      "role": "Web Developer, Full-Stack Developer, Team Leader",
+      "company": "AGGA.IO",
+      "period": "2018 - 2023",
+      "highlights": [
+        "Developed web applications using PHP and Laravel",
+        "Built mobile applications with Cordova, Framework7, and React Native",
+        "Managed Agile sprints and version control using Git and Azure DevOps"
+      ]
+    }
+  ],
+  "skills": {
+    "frontend": [
+      "React.js",
+      "jQuery",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "mobile": [
+      "React Native",
+      "Framework7",
+      "Cordova"
+    ],
+    "backend": [
+      "PHP",
+      "Laravel",
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "Python Flask API"
+    ],
+    "database": [
+      "MySQL",
+      "MSSQL",
+      "PostgreSQL",
+      "MongoDB"
+    ],
+    "devops": [
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "Windows",
+      "SSL Management"
+    ],
+    "ai": [
+      "Python",
+      "OpenAI Embeddings",
+      "FAISS",
+      "n8n",
+      "Prompt Engineering",
+      "YOLO",
+      "Computer Vision",
+      "Deep Learning"
+    ],
+    "project_management": [
+      "Agile",
+      "Scrum",
+      "Sprint Planning"
+    ]
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Computer Science (B.C.Sc.)",
+      "institution": "University of Computer Studies Taungngu (UCST)",
+      "period": "2013 - 2018"
+    },
+    {
+      "degree": "DHIS 2 Fundamental & Data Quality Certificates",
+      "institution": "University of Oslo",
+      "period": "2020 - 2021"
+    }
+  ],
+  "projects": [
+    {
+      "name": "BeeBudget",
+      "description": "Smart Personal Finance Management app (Production) with multi-account support, budget planning, and AI-powered financial insights. Officially live on the Google Play Store with 150+ currencies and a premium UI.",
+      "tech": [
+        "React Native",
+        "Expo",
+        "SQLite",
+        "Zustand",
+        "Gemini API"
+      ],
+      "url": "https://play.google.com/store/apps/details?id=com.xynotechmm.beebudget"
+    },
+    {
+      "name": "KidGame",
+      "description": "Interactive learning and gaming platform for kids",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "url": "https://kidgame.xynotechmm.online/"
+    },
+    {
+      "name": "Hmaryu Store",
+      "description": "Cross-border proxy shopping platform",
+      "tech": [
+        "Next.js",
+        "React",
+        "Node.js",
+        "Laravel"
+      ],
+      "url": "https://hmaryu.store/"
+    },
+    {
+      "name": "AI Warehouse Inventory Detection",
+      "description": "Real-time inventory detection system using YOLO",
+      "tech": [
+        "YOLO",
+        "Deep Learning",
+        "Go-Lang"
+      ],
+      "company": "Thai Beverage"
+    }
+  ],
+  "links": {
+    "resume": "https://drive.google.com/file/d/1xfSFPUVxTxV80_wksD6FJgczfDhIcqE9/view?usp=sharing",
+    "github": "https://github.com/wymdev",
+    "linkedin": "https://www.linkedin.com/in/waiyanmaing-dev",
+    "portfolio": "https://waiyanmaing.space"
+  }
+}

@@ -155,8 +155,8 @@ export default function AIChat({
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-medium text-[14px]">AI Assistant</p>
-                  <p className="text-white/70 text-[11px]">Powered by OpenAI + Resume</p>
+                  <p className="text-white font-medium text-[14px]">AI Career Assistant</p>
+                  <p className="text-white/70 text-[11px]">Powered by Gemini 3.1 Flash-Lite</p>
                 </div>
               </div>
               <button
@@ -301,42 +301,78 @@ export function AIButton({ onClick, isOpen }: { onClick: () => void; isOpen: boo
   return (
     <motion.button
       onClick={onClick}
-      className="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-14 h-14 rounded-2xl flex items-center justify-center z-40 overflow-hidden group"
+      className="fixed bottom-12 right-4 md:bottom-14 md:right-6 w-14 h-14 rounded-2xl flex items-center justify-center z-40 overflow-hidden group shadow-[0_10px_40px_rgba(0,120,212,0.4)]"
       style={{
-        background: "linear-gradient(135deg, var(--accent), var(--syntax-type))",
-        boxShadow: "0 4px 24px rgba(0, 120, 212, 0.4)",
+        background: "linear-gradient(135deg, #0a192f, #0078d4, #1e3a8a)",
+        backgroundSize: "200% 200%",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
-      whileHover={{ scale: 1.08 }}
+      whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      animate={{ rotate: isOpen ? 180 : 0 }}
-      transition={{ type: "spring", stiffness: 300 }}
+      animate={{ 
+        rotate: isOpen ? 180 : 0,
+        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"]
+      }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 260, 
+        damping: 20,
+        backgroundPosition: { 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "linear",
+          type: "tween" 
+        }
+      }}
     >
-      {/* Glow effect */}
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{
-          background: "linear-gradient(135deg, rgba(255,255,255,0.2), transparent)",
-        }}
-      />
+      {/* Glossy Overlay */}
+      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
       
       {isOpen ? (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-white relative z-10" fill="currentColor">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        <svg viewBox="0 0 24 24" className="w-6 h-6 text-white relative z-10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       ) : (
-        <svg viewBox="0 0 24 24" className="w-7 h-7 text-white relative z-10" fill="currentColor">
-          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1zm0-3H7c-.55 0-1-.45-1-1s.45-1 1-1h10c.55 0 1 .45 1 1s-.45 1-1 1z"/>
-        </svg>
+        <div className="relative">
+           {/* Modern AI Robot Icon */}
+           <svg viewBox="0 0 24 24" className="w-7 h-7 text-white relative z-10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 8V4H8" />
+              <rect width="16" height="12" x="4" y="8" rx="2" />
+              <path d="M2 14h2" />
+              <path d="M20 14h2" />
+              <path d="M15 13v2" />
+              <path d="M9 13v2" />
+           </svg>
+           {/* Sparkles */}
+           <motion.div 
+             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+             transition={{ repeat: Infinity, duration: 2 }}
+             className="absolute -top-1 -right-1 text-white"
+           >
+             <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" />
+             </svg>
+           </motion.div>
+        </div>
       )}
       
-      {/* Pulse effect when not open */}
+      {/* Dynamic Pulse Halo */}
       {!isOpen && (
-        <motion.div
-          className="absolute inset-0 rounded-2xl"
-          style={{ background: "inherit" }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        />
+        <>
+          <motion.div
+            className="absolute inset-0 rounded-3xl"
+            style={{ border: "2px solid #0078d4" }}
+            animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeOut" }}
+          />
+          <motion.div
+            className="absolute inset-0 rounded-3xl"
+            style={{ border: "2px solid #a673ef" }}
+            animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
+            transition={{ repeat: Infinity, duration: 2.5, ease: "easeOut", delay: 0.5 }}
+          />
+        </>
       )}
     </motion.button>
   );
