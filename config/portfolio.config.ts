@@ -9,7 +9,7 @@ export const portfolioConfig = {
     email: "waiyanmaing.dev@gmail.com",
     phone: "0652940833",
     location: "Bangkok, Thailand",
-    address: "37 Lasalle 19th Alley, Bang Na Tai, Bangkok City",
+    address: "PF94+GFC, Phet Kasem Rd, Bang Wa, Phasi Charoen, Bangkok 10160",
     website: "https://waiyanmaing.vercel.app",
 
     // Social Links
