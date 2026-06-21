@@ -48,12 +48,12 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(121, 121, 121, 0.4) transparent;
+  scrollbar-color: rgba(121, 121, 121, 0.35) transparent;
 }
 
 *::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
+  width: 8px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -61,15 +61,15 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(121, 121, 121, 0.4);
-  border: 3px solid transparent;
-  border-radius: 7px;
+  background: rgba(121, 121, 121, 0.25);
+  border: 1px solid transparent;
+  border-radius: 6px;
   background-clip: padding-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(121, 121, 121, 0.7);
-  border: 3px solid transparent;
+  background: rgba(121, 121, 121, 0.55);
+  border: 1px solid transparent;
   background-clip: padding-box;
 }
 
@@ -334,13 +334,14 @@ body {
 @media (max-width: 768px) {
   /* Smaller scrollbars on mobile */
   *::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
   }
   
   *::-webkit-scrollbar-thumb {
-    border: 1px solid transparent;
-    border-radius: 3px;
+    border: none;
+    border-radius: 2px;
+    background: rgba(121, 121, 121, 0.35);
   }
   
   /* Adjust body font for better mobile readability */
@@ -404,4 +405,13 @@ html, body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
 }

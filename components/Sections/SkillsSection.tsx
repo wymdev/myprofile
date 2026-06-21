@@ -109,7 +109,7 @@ export default function SkillsSection() {
           </div>
 
           {/* Category Tabs - Scrollable on mobile */}
-          <div className="overflow-x-auto pb-2 mb-8 -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="overflow-x-auto pb-2 mb-8 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
             <div 
               className="flex gap-2 p-1.5 rounded-2xl inline-flex min-w-max"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid var(--border-subtle)" }}

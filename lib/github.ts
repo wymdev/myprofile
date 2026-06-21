@@ -6,7 +6,7 @@ const GITHUB_USERNAME = "wymdev";
 const ALLOWED_REPOS = [
   "go-mobile-backend",
   "aivision_studio",
-  "filesharebot",
+  "filmxmm_file_bot",
   "beebudget",
 ];
 

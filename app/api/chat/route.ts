@@ -91,7 +91,7 @@ What would you like to know?`;
     return `**Wai Yan Maing's Prominent Projects**
 
 • **BeeBudget** - Smart Personal Finance app with AI insights
-• **KidGame** - Interactive learning platform for kids
+• **HexGuard** - Website security surface scanner
 • **Hmaryu Store** - Cross-border proxy shopping platform
 • **AI Warehouse Inventory** - YOLO-based detection for Thai Beverage
 

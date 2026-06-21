@@ -31,7 +31,7 @@ interface TabBarProps {
 export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
   return (
     <div
-      className="flex items-center h-[35px] overflow-x-auto"
+      className="flex items-center h-[35px] overflow-x-auto scrollbar-hide"
       style={{
         background: "var(--tab-inactive-bg)",
         borderBottom: "1px solid var(--border-subtle)"
